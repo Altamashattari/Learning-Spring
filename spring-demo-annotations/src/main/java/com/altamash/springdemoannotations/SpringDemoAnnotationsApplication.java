@@ -1,13 +1,21 @@
 package com.altamash.springdemoannotations;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-@SpringBootApplication
 public class SpringDemoAnnotationsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringDemoAnnotationsApplication.class, args);
+		// read spring config
+		var context = new ClassPathXmlApplicationContext(
+			"applicationContext.xml"
+		);
+		// get the bean from spring container , using default bean id
+		Coach theCoach = context.getBean("tennisCoach", Coach.class);
+
+		// call a method on bean
+		System.out.println(theCoach.getDailyWorkout());
+		// close the context
+		context.close();
 	}
 
 }
