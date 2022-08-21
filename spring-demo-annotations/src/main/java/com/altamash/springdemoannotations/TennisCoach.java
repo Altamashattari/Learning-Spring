@@ -1,6 +1,7 @@
 package com.altamash.springdemoannotations;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 // @Component("bean-id") if beanid is not specified, default beanId will be tennisCoach
@@ -9,6 +10,7 @@ public class TennisCoach implements Coach {
 
     // Field Injection
     @Autowired
+    @Qualifier("randomFortuneService") // bean id of the component is specified as param
     private FortuneService fortuneService;
 
     // Constructor injection
