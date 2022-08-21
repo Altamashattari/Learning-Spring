@@ -1,14 +1,27 @@
 package com.altamash.springdemoannotations;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 // @Component("bean-id") if beanid is not specified, default beanId will be tennisCoach
 @Component
 public class TennisCoach implements Coach {
 
+    private FortuneService fortuneService;
+
+    @Autowired
+    TennisCoach(FortuneService fortuneService) {
+        this.fortuneService = fortuneService;
+    }
+
     @Override
     public String getDailyWorkout() {
         return "Practice your Backend volley";
+    }
+
+    @Override
+    public String getDailyFortune() {
+        return this.fortuneService.getFortune();
     }
     
 }
